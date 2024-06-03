@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        
+        #box{
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            display: inline-block;
+            color: black;
+            font-size: 25px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+    <div id="root">
+
+    </div>
+    <script src="react.development.js">
+    </script>
+    <script src="babel.min.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        function Name({name}){
+            return <div id="box">{name}</div>
+        }
+        function Hello() {
+            return <div>
+                <div><Name name="1"/><Name name="2"/></div>
+                <div><Name name="3"/><Name name="4"/></div>
+            </div>
+        }
+        var containerRef = document.getElementById("root")
+        var rootcontainer = ReactDOM.createRoot(containerRef)
+        rootcontainer.render(<Hello />)
+    </script>
+</body>
+
+</html>

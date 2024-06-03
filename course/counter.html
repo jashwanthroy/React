@@ -1,0 +1,29 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Counter(){
+        var [cnt,setCnt] = React.useState(0)
+        function cntIncrement(){
+            setCnt(cnt + 1)
+            document.getElementById("cnt").style.color="blue"
+        }
+        function cntDecrement(){
+            setCnt(cnt - 1)
+            document.getElementById("cnt").style.color="red"
+        }
+        function reset(){
+            setCnt(0);
+            document.getElementById("cnt").style.color="green"
+        }
+        return <>
+            <h1 id="cnt">{cnt}</h1>
+            <button onClick={cntIncrement}>Increment</button>
+            <button onClick={cntDecrement}>Decrement</button>
+            <button onClick={reset}>Reset</button>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<Counter />)
+</script>

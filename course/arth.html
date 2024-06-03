@@ -1,0 +1,51 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<style>
+    button{
+        height: 50px;
+        width: 100px;
+        margin: 10px;
+        background-color: aqua;
+        border: 2px solid black;
+    }
+</style>
+<script type="text/babel">
+    function App(){
+        const no1Ref = React.useRef();
+        const no2Ref = React.useRef();
+        const h1Ref = React.useRef();
+        function sum(eve){
+            const num1 = no1Ref.current.value;
+            const num2 = no2Ref.current.value;
+            h1Ref.current.innerText = Number(num1) + Number(num2);
+        }
+        function diff(eve){
+            const num1 = no1Ref.current.value;
+            const num2 = no2Ref.current.value;
+            h1Ref.current.innerText = Number(num1) - Number(num2);
+        }
+        function product(eve){
+            const num1 = no1Ref.current.value;
+            const num2 = no2Ref.current.value;
+            h1Ref.current.innerText = Number(num1) * Number(num2);
+        }
+        return <>
+        <p>
+            Num1:<input ref={no1Ref}/>
+        </p>
+        <p>
+            Num2:<input ref={no2Ref}/>
+        </p>
+        <p>
+            <button  onClick={sum}>Sum</button>
+            <button  onClick={diff}>Difference</button>
+            <button  onClick={product}>Product</button>
+        </p>
+        <h1 ref={h1Ref}></h1>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>

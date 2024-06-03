@@ -1,0 +1,18 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function Ref(props){
+        const {name,native,runs} = props;
+        return <><h1>My name is {name},I am from {native} and My runs are {runs} </h1></>
+    }
+    function App(){
+        return <>
+        <Ref name="sachin" native="Mumbai" runs="10000"/>
+        <Ref name="Dhoni" native="Ranchi" runs="7000"/>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>

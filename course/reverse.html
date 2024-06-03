@@ -1,0 +1,24 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function App(){
+        const str = React.useRef();
+        const h1Ref = React.useRef();
+        function reverse(){
+            const val = str.current.value;
+            h1Ref.current.innerText = val.split('').reverse().join('');
+        }
+        return <>
+        <p>
+            <input type="text" ref={str}/>
+        </p>
+        <button onClick={reverse}>Reverse</button>
+        <h1>Reverse is:</h1>
+        <h1 ref={h1Ref}></h1>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>

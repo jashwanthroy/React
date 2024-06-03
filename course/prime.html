@@ -1,0 +1,33 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function App(){
+        const num = React.useRef();
+        const h1Ref = React.useRef();
+        function check(){
+            const val = Number(num.current.value);
+            let cnt = 0;
+            for(let i = 1;i <= val;i++){
+                if(val % i == 0){
+                    cnt++;
+                }
+            }
+            if(cnt == 2){
+                h1Ref.current.innerText = "WOOW!! IT iS A Prime"
+            }else{
+                h1Ref.current.innerText = "IT is Not Prime"
+            }
+        }
+        return <>
+        <p>
+            NUM: <input ref={num}/>
+        </p>
+        <button onClick={check}>Check</button>
+        <h1 ref={h1Ref}></h1>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"))
+    rootref.render(<App />)
+</script>

@@ -1,0 +1,58 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+
+<script type="text/babel">
+function App(){
+    function sum(eveobj){
+        const num1 = Number(document.querySelector("#num1").value)
+        const num2 = Number(document.querySelector("#num2").value)
+        const sum = num1 + num2
+        document.querySelector("#root > div > h3").innerText = sum
+        if(sum< 100){
+            document.querySelector("#root > div > h3").style.color="red";
+        }else{
+            document.querySelector("#root > div > h3").style.color="blue"
+        }
+    }
+    function product(eveobj){
+        const num1 = Number(document.querySelector("#num1").value)
+        const num2 = Number(document.querySelector("#num2").value)
+        const sum = num1 * num2
+        document.querySelector("#root > div > h3").innerText = sum
+        if(sum< 100){
+            document.querySelector("#root > div > h3").style.color="red";
+        }else{
+            document.querySelector("#root > div > h3").style.color="blue"
+        }
+    }
+    function diff(eveobj){
+        const num1 = Number(document.querySelector("#num1").value)
+        const num2 = Number(document.querySelector("#num2").value)
+        const sum = num1 - num2
+        document.querySelector("#root > div > h3").innerText = sum
+        if(sum< 100){
+            document.querySelector("#root > div > h3").style.color="red";
+        }else{
+            document.querySelector("#root > div > h3").style.color="blue"
+        }
+    }
+    return <div>
+        <p>
+            <b>Num1:</b><input id="num1"/>
+        </p>
+        <p>
+            <b>Num2:</b><input id="num2"/>
+        </p>
+        <p>
+            <button onClick={sum}>Sum</button>
+            <button onClick={product}>Product</button>
+            <button onClick={diff}>Difference</button>
+        </p>
+        <h1>Result: </h1><h3></h3>
+    </div>
+}
+const rootref = ReactDOM.createRoot(document.getElementById("root"));
+rootref.render(<App />)
+</script>

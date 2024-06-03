@@ -1,0 +1,23 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<style>
+    #circle{
+        width: 100px;
+        height: 100px;
+        border: 2px solid red;
+        display: inline-block;
+        border-radius: 50px;
+    }
+</style>
+<script type="text/babel">
+    function Help(){
+        return <div id="circle"></div>
+    }
+    function Circle(){
+        return <div><div><Help /><Help /></div><div><Help /><Help /></div></div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<Circle />)
+</script>

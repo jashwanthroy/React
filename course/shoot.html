@@ -1,0 +1,38 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<style>
+    #root{
+        height: 900px;
+        width: 633px;
+        border: 2px solid black;
+    }
+    #shoot{
+        margin-top: 390px;
+    }
+    .leftone{
+        margin-top: 500px;
+    }
+    #firstline{
+        margin-left: 0px;
+        border: 5px solid black;
+        width: 70px
+    }
+</style>
+<div id="root">
+</div>
+<script type="text/babel">
+    function App(){
+        return <>
+           <div class="leftone">
+            <hr id="firstline"/>
+           </div>
+           <div>
+
+           </div>
+           <button id="shoot">Shoot</button>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>
