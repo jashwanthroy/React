@@ -1,0 +1,56 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<style>
+    button{
+        height: 50px;
+        width: 100px;
+        margin: 10px;
+        background-color: aqua;
+        border: 2px solid black;
+    }
+</style>
+<script type="text/babel">
+    function App(){
+        const [res,setRes] = React.useState(0)
+        const [obj,setObj] = React.useState({})
+        //creating a new state variable to maintain the updation of two numbers when re-rendering of App component
+        function sum(eve){
+            const {num1,num2} = obj;
+            const ref = Number(num1) + Number(num2)
+            setRes(ref)
+        }
+        function diff(eve){
+            const {num1,num2} = obj;
+            const ref = Number(num1) - Number(num2)
+            setRes(ref)
+        }
+        function product(eve){
+            const {num1,num2} = obj;
+            const ref = Number(num1) * Number(num2)
+            setRes(ref)
+        }
+        function handleChange(eve){
+            const {id,value} = eve.target;
+            console.log(id,value)
+            setObj({...obj,[id] : value})
+        }
+        return <>
+        <p>
+            Num1:<input id="num1" onChange={handleChange} type="number"/>
+        </p>
+        <p>
+            Num2:<input id="num2" onChange={handleChange} type="number"/>
+        </p>
+        <p>
+            <button  onClick={sum}>Sum</button>
+            <button  onClick={diff}>Difference</button>
+            <button  onClick={product}>Product</button>
+        </p>
+        <h1>{res}</h1>
+        </>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>
