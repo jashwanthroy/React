@@ -15,6 +15,9 @@
            const ref = eve.target
            curr.current = ref.value
         }
+        function handleClick2(){
+            console.log(curr)
+        }
         function handleClick(){
             setVal(curr.current)
         }
@@ -22,6 +25,9 @@
             <h1>App</h1>
             <p>
                 <b>Enter Value:</b><input onChange={handleChange}/>
+            </p>
+            <p>
+                <button onClick={handleClick2}>Validation</button>
             </p>
             <p>
                 <button onClick={handleClick}>Pass data to A</button>
