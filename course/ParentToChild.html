@@ -1,0 +1,35 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    function A(props){
+        return <div>
+            <h1>A : {props.content}</h1>
+        </div>
+    }
+    function App(){
+        const [val,setVal] = React.useState("No Data")
+        function handleChange(eve){
+            const ref = eve.target
+            setVal(ref.value)
+        }
+        function handleClick(){
+            
+
+        }
+        return <div>
+            <h1>App</h1>
+            <p>
+                <b>Enter Value:</b><input onChange={handleChange}/>
+            </p>
+            { /*<p>
+                <button onClick={handleClick}>Pass Data to A</button>
+            </p> */
+        }
+            <A content = {val}/>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
