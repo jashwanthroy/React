@@ -1,0 +1,34 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const Children = (props) =>{
+        const reference = React.useRef();
+        const handleClick = ()=>{
+            props.func(reference.current.value)
+        }
+        return <div>
+            <h1>Child</h1>
+            <p>
+                Enter Name : <input ref={reference}/>
+            </p>
+            <p>
+                <button onClick={handleClick}>send data to Parent</button>
+            </p>
+            </div>
+    }
+    const Parent = () =>{
+        const [data,setData] = React.useState("");
+        const callback = (param) =>{
+            setData(param)
+        }
+        return <div>
+            <Children func={callback}/>
+            <h1>Parent: {data}</h1>
+
+        </div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<Parent />)
+</script>
