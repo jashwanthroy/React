@@ -1,0 +1,41 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const Children = (props) =>{
+        const reference = React.useRef();
+        const handleClick = ()=>{
+            props.func(reference.current.value)
+        }
+        return <div>
+            <h1>Child</h1>
+            <p>
+                Enter Name : <input ref={reference}/>
+            </p>
+            <p>
+                <button onClick={handleClick}>send data to Children2</button>
+            </p>
+            </div>
+    }
+    const Children2 = (props) =>{
+        /*Data passing within the siblings*/
+        return <div>
+            <h1>Child2:{props.player}</h1>
+        </div>
+    }
+    const Parent = () =>{
+        const [data,setData] = React.useState("");
+        const callback = (param) =>{
+            setData(param)
+        }
+        return <div>
+            <Children func={callback}/>
+            <Children2 player={data}/>
+            <h1>Parent: </h1>
+
+        </div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<Parent />)
+</script>

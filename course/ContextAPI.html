@@ -1,0 +1,48 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const context = React.createContext();
+    const Parent = () =>{
+        const name = ["sachin","dhoni","kohli","Yuvaraj"]
+        return <div>
+            <h1>Parent</h1>
+            <context.Provider value={name}>
+                <Child1 />
+            </context.Provider>
+            </div>
+    }
+    const Child1 = () =>{
+        const ref = React.useContext(context)
+        return <div>
+            <h1>Child1:{ref[0]}</h1>
+            <Child2 />
+            </div>
+    }
+    const Child2 = () =>{
+        const ref = React.useContext(context)
+        return <div>
+            <h1>Child2:{ref[1]}</h1>
+            <Child3 />
+            </div>
+        
+    }
+    const Child3 = () =>{
+        const ref = React.useContext(context)
+        return <div>
+            <h1>Child3:{ref[2]}</h1>
+            <Child4 />
+            </div>
+        
+    }
+    const Child4 = () =>{
+        const ref = React.useContext(context);
+        return <div>
+            <h1>Child4:{ref[3]}</h1>
+            </div>
+        
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<Parent />)
+</script>
