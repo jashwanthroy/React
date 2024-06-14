@@ -1,0 +1,67 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<style>
+    body{
+        display: inline;
+    }
+    header{
+        height: 10%;
+        width: 100%;
+        background-color:aqua;
+        font-size: 50px;
+        text-align: center;
+    }
+    footer{
+        color:red;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: -5px;
+        background-color: aqua;
+        width: 100%;
+        text-align: center;
+    }
+    ul>li{
+        display: inline-block;
+        margin: 5px;
+        cursor: pointer;
+    }
+    ul{
+        text-align: right;
+    }
+    .menu-pur{
+        background-color:darkgrey;
+    }
+</style>
+<div id="root"></div>
+<script type="text/babel" >
+    const Header = () =>{
+        return <header>
+            React Web Page
+            </header>
+    }
+    const Footer = () =>{
+        return <footer>
+            &copy; All rights Reserved..
+        </footer>
+    }
+    const Menu = () =>{
+        return <div className="menu-pur">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    }
+    const App = () =>{
+        return <div className="app">
+            <Header />
+            <Footer />
+            <Menu />
+            </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
