@@ -1,0 +1,29 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const Order = (props) => {
+        const {name} = props
+        return
+        <ol>
+            {
+                name.map((ele, ind, arr) => {
+                    return <li>{ele}</li>
+                })
+            }
+        </ol>
+    }
+    const App = () => {
+        const players = ["sachin", "dhoni", "kohli"]
+        const students = ["s1", "s2", "s3", "s4", "s5"]
+        return <div>
+            <h1>Players</h1>
+            <Order name={players} />
+            <h1>Students</h1>
+            <Order name={students} />
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

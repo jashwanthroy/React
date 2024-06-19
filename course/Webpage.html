@@ -13,7 +13,6 @@
         text-align: center;
     }
     footer{
-        color:red;
         position: fixed;
         left: 0;
         bottom: 0;
@@ -26,6 +25,7 @@
         display: inline-block;
         margin: 5px;
         cursor: pointer;
+        font-size: 20px;
     }
     ul{
         text-align: right;
@@ -47,11 +47,14 @@
         </footer>
     }
     const Menu = () =>{
+        const handleClick = ()=>{
+            
+        }
         return <div className="menu-pur">
             <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li onClick={handleClick}>Home</li>
+                <li onClick={handleClick}>About</li>
+                <li onClick={handleClick}>Contact</li>
             </ul>
         </div>
     }

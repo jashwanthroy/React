@@ -1,0 +1,44 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const q = [
+        {
+            "que":"Who is the ceo of Google ?",
+            "options":["sundar pichai","ratan tata","ambani"],
+            "type":"S",
+            "ans":"A"
+        },
+        {
+            "que":"How to pass data from parent to child ?",
+            "options":["attribute","children","callback","context"],
+            "type":"M",
+            "ans":"AB"
+        },
+        {
+            "que":"Which library used to compile JSX ?",
+            "options":["Babel","ReactDOM","above all"],
+            "type":"S",
+            "ans":"A"
+        },
+        ]
+        return <div>
+            {
+                q.map((ele,ind,oa)=>{
+                    return <div>
+                        <h3>{ind + 1}.{ele.que}</h3>
+                        {
+                            ele.options.map((val,index) => {
+                                return <p><input name={ind} type={ele.type === "S" ? "radio" : "checkbox"}/>{val}</p>
+                            })
+                        }
+                    </div>
+                })
+            }
+            </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
