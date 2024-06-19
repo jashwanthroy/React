@@ -4,6 +4,8 @@
 <div id="root"></div>
 <script type="text/babel">
     const App = () =>{
+        const optionValues = ['A','B','C','D']
+        const ansObj = {}
         const q = [
         {
             "que":"Who is the ceo of Google ?",
@@ -24,6 +26,25 @@
             "ans":"A"
         },
         ]
+        const getResult = () =>{
+            console.log(ansObj)
+            alert("You got 0 marks")
+        }
+        const handleChange = (eve) =>{
+            const {id,value,type,checked} = eve.target;
+            if(type === 'checkbox'){
+                const checkedval = ansObj[id] ? ansObj[id].split("") : []
+                if(checked){
+                    checkedval.push(value)
+                }else{
+                    const ind = checkedval.indexOf(value)
+                    checkedval.splice(ind,1)
+                }
+                ansObj[id] = checkedval.sort().join("")
+            }else{
+                ansObj[id] = value;
+            }
+        }
         return <div>
             {
                 q.map((ele,ind,oa)=>{
@@ -31,12 +52,13 @@
                         <h3>{ind + 1}.{ele.que}</h3>
                         {
                             ele.options.map((val,index) => {
-                                return <p><input name={ind} type={ele.type === "S" ? "radio" : "checkbox"}/>{val}</p>
+                                return <p><input name={ind} value={optionValues[index]} onChange={handleChange} type={ele.type === "S" ? "radio" : "checkbox"}/>{val}</p>
                             })
                         }
                     </div>
                 })
             }
+            <button style={{"backgroundColor":"lightblue"}} onClick={getResult}>Submit</button>
             </div>
     }
     const rootRef = ReactDOM.createRoot(document.getElementById("root"));
