@@ -1,0 +1,29 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const players = ["sachin","dhoni","kohli","rohit","kl rahul","yuvaraj","panth","zaheer","Lara","pointing","Warne"]
+    const App = () =>{
+        const [actual,setActual] = React.useState(players)
+        const handleChange = (eve) =>{
+            const filterd = players.filter((ele)=>{
+                return ele.toLowerCase().includes(eve.target.value.toLowerCase()) 
+            })
+            setActual(filterd)
+        }
+        return <div>
+            <h1>Players Search Bar</h1>
+            <p><b>Search</b><input onChange={handleChange}/></p>
+            <ol>
+                {
+                    actual.map((ele,ind)=>{
+                        return <li key={ind}>{ele}</li>
+                    })
+                }
+            </ol>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

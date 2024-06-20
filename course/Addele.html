@@ -1,0 +1,36 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const [listitem,setListItem] = React.useState([])
+        const ref = React.useRef()
+        const handleClick = () =>{
+            const name = ref.current.value;
+            if(listitem.includes(name)){
+                alert("Name Already Existed")
+            }else{
+                setListItem([...listitem,name])
+            }
+        }
+        return <div>
+            <h1>Dynamic List </h1>
+            <p>
+                <b>Name:</b> <input ref={ref}/>
+            </p>
+            <p>
+                <button onClick={handleClick}>Add item</button>
+            </p>
+            <ol>
+                {
+                    listitem.map((ele,ind)=>{
+                        return <li key={ind}>{ele}</li>
+                    })
+                }
+            </ol>
+            </div>
+   }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
