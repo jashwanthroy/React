@@ -3,63 +3,82 @@
 <script src="react-dom.development.js"></script>
 <div id="root"></div>
 <script type="text/babel">
-    const App = () =>{
-        const optionValues = ['A','B','C','D']
+    const Question = (props) => {
+        const {a,b,c,d} = props
+        const {type,options,que} = d;
+        return <div>
+            <h3>{a + 1}.{que}</h3>
+            {
+                options.map((val, index) => {
+                    return <p key={index}><input id={a + 1} name={a} value={b[index]} onChange={c} type={type === "S" ? "radio" : "checkbox"} />{val}</p>
+                })
+            }
+        </div>
+    }
+    const App = () => {
+        const optionValues = ['A', 'B', 'C', 'D']
         const ansObj = {}
         const q = [
-        {
-            "que":"Who is the ceo of Google ?",
-            "options":["sundar pichai","ratan tata","ambani"],
-            "type":"S",
-            "ans":"A"
-        },
-        {
-            "que":"How to pass data from parent to child ?",
-            "options":["attribute","children","callback","context"],
-            "type":"M",
-            "ans":"AB"
-        },
-        {
-            "que":"Which library used to compile JSX ?",
-            "options":["Babel","ReactDOM","above all"],
-            "type":"S",
-            "ans":"A"
-        },
+            {
+                "id":1,
+                "que": "Who is the ceo of Google ?",
+                "options": ["sundar pichai", "ratan tata", "ambani"],
+                "type": "S",
+                "ans": "A"
+            },
+            {
+                "id":2,
+                "que": "How to pass data from parent to child ?",
+                "options": ["attribute", "children", "callback", "context"],
+                "type": "M",
+                "ans": "AB"
+            },
+            {
+                "id":3,
+                "que": "Which library used to compile JSX ?",
+                "options": ["Babel", "ReactDOM", "above all"],
+                "type": "S",
+                "ans": "A"
+            },
         ]
-        const getResult = () =>{
-            console.log(ansObj)
-            alert("You got 0 marks")
-        }
-        const handleChange = (eve) =>{
-            const {id,value,type,checked} = eve.target;
-            if(type === 'checkbox'){
-                const checkedval = ansObj[id] ? ansObj[id].split("") : []
-                if(checked){
-                    checkedval.push(value)
+        const getResult = () => {
+            let marks = 0;
+            for(let key in ansObj){
+                const keyQestion = q.find((obj)=>{
+                    return obj.id == key
+                })
+                if(keyQestion.ans === ansObj[key]){
+                    marks += 4;
                 }else{
+                    marks -= 1;
+                }
+            }            
+            alert(`You got ${marks} marks`)
+        }
+        const handleChange = (eve) => {
+            const { id, value, type, checked } = eve.target;
+            if (type === 'checkbox') {
+                const checkedval = ansObj[id] ? ansObj[id].split("") : []
+                if (checked) {
+                    checkedval.push(value)
+                } else {
                     const ind = checkedval.indexOf(value)
-                    checkedval.splice(ind,1)
+                    checkedval.splice(ind, 1)
                 }
                 ansObj[id] = checkedval.sort().join("")
-            }else{
+            } else {
                 ansObj[id] = value;
             }
         }
         return <div>
+            <p>+4 for Correct Answer and -1 for wrong Answer</p>
             {
-                q.map((ele,ind,oa)=>{
-                    return <div>
-                        <h3>{ind + 1}.{ele.que}</h3>
-                        {
-                            ele.options.map((val,index) => {
-                                return <p><input name={ind} value={optionValues[index]} onChange={handleChange} type={ele.type === "S" ? "radio" : "checkbox"}/>{val}</p>
-                            })
-                        }
-                    </div>
+                q.map((ele, ind, oa) => {
+                    return <div key={ind}> <Question a={ind} b={optionValues} c={handleChange} d={ele}/> </div>
                 })
             }
-            <button style={{"backgroundColor":"lightblue"}} onClick={getResult}>Submit</button>
-            </div>
+            <button style={{ "backgroundColor": "lightblue" }} onClick={getResult}>Submit</button>
+        </div>
     }
     const rootRef = ReactDOM.createRoot(document.getElementById("root"));
     rootRef.render(<App />)
