@@ -1,0 +1,65 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const data = [
+    {
+        name:"s1",
+        rno:1,
+        marks:90
+    },
+    {
+        name:"s2",
+        rno:2,
+        marks: 88
+    },
+    {
+        name: "s3",
+        rno:3,
+        marks:79
+    }
+    ]
+    const App = () =>{
+        const [row,setRow] = React.useState({})
+        const handleClick = (props) =>{
+            setRow(props)
+        }
+        return <div>
+            <h1>Reusable Table Component</h1>
+            <table border="2px">
+                <thead>
+                    <tr><th>Name</th>
+                    <th>Rno</th>
+                    <th>Marks</th>
+                <th>View</th></tr>
+                </thead>
+                <tbody>
+                    {
+                        data.map(({name,rno,marks},ind)=>{
+                            return <tr key={ind}><td>{name}</td>
+                            <td>{rno}</td>
+                            <td>{marks}</td>
+                        <td><button onClick={()=>handleClick({name,rno,marks})}>view</button></td></tr>
+                        })
+                    }
+                </tbody>
+            </table>
+            {Object.keys(row).length > 0 && <table border="2px">
+                    <tbody>
+                        {
+                            Object.keys(row).map((ele,ind)=>{
+                                return <tr key={ind}>
+                                    <td>{ele}</td>
+                                    <td>{row[ele]}</td>
+                                </tr>
+                            })
+                        }
+                    </tbody>
+                    </table>
+            }
+        </div>
+    }
+        const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+        rootRef.render(<App />)
+    </script>
