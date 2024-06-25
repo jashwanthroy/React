@@ -1,0 +1,62 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const Player = [
+        {
+            name: "sachin",
+            runs: 10000,
+            location: "mumbai"
+        },
+        {
+            name: "dhoni",
+            runs: 9000,
+            location: "ranchi"
+        }]
+    const Reuse = (props) => {
+        const { ths, data} = props;
+        return <div>
+            <table border="2px">
+                <thead>
+                    <tr>{
+                        ths.map((ele, ind) => {
+                            return <th key={ind}>{ele}</th>
+                        })
+                    }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        data.map((ele,ind)=>{
+                            return <tr key={ind}>
+                                
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    const App = () => {
+        const Player = [
+            {
+                name: "sachin",
+                runs: 10000,
+                location: "mumbai"
+            },
+            {
+                name: "dhoni",
+                runs: 9000,
+                location: "ranchi"
+            },
+            ]
+
+        return <div>
+            <h1>Players</h1>
+            <Reuse data={Player} ths={['Name',"runs","location"]} />
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
