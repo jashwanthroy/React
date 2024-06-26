@@ -1,0 +1,43 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const [data,setData] = React.useState("https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png");
+        const fnUpload = () =>{
+
+        }
+        const handleChange = (eve) =>{
+            const file = eve.target.files['0']
+            const {type,size} = file
+            if(!type.includes('image/')){
+                alert("Upload an Image only!!!")
+                return;
+            }
+            if(size > 2000000){
+                alert("File size should not exceed 1MB")
+                return;
+            }
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = function(){
+               setData(reader.result)
+            }
+            reader.onerror = function(){
+                console.log(reader.error)
+            }
+        }
+        return <div>
+            <p>
+                Photo: <input onChange={handleChange} name="photo" type="file" />
+                <img src={data} height="100px" width="100px"/>
+            </p>
+            <p>
+                <button onClick={fnUpload}>Upload</button>
+            </p>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
