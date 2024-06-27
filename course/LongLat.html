@@ -1,0 +1,24 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const [data,setData] = React.useState("");
+        const [url,setUrl] = React.useState("")
+        const handleClick = () =>{
+            navigator.geolocation.getCurrentPosition((param)=>{
+               const {longitude,latitude} = param.coords
+               setData(`Longitude: ${longitude}  Latitude: ${latitude}`)
+               setUrl(`https://google.com/maps?&output=embed&q=${latitude},${longitude}`)
+            })
+        }
+        return <div>
+                <button onClick={handleClick}>Get Location</button>
+                <h1>{data}</h1>
+                {url && <iframe src={url} frameborder="5px" height="400px" width="500px"></iframe>}
+            </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
