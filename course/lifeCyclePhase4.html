@@ -1,0 +1,28 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () => {
+        const [cnt, setCnt] = React.useState(0)
+        const [name,setName] = React.useState("sachin")
+        React.useEffect(() => {
+            console.log("100 lines of code")
+        },[])
+        //Adding empty dependency the useEffect will be executed only at first time load even if the component is rerendering.
+        return <div>
+            <h1>{name}</h1>
+            <button onClick={() => {
+                setName(name === "sachin" ? "dhoni" : "sachin")
+            }}>Toggle</button>
+            <h1>{cnt}</h1>
+            <button onClick={()=>{
+                setCnt((x)=>{
+                    return x + 1;
+                })}
+            }>Increment</button>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

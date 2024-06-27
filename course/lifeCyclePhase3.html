@@ -1,0 +1,23 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () => {
+        const [cnt, setCnt] = React.useState(0)
+        //without empty dependency useEffect will be executed for rerendering in component
+        React.useEffect(() => {
+            console.log("Called")
+        })
+        return <div>
+            <h1>{cnt}</h1>
+            <button onClick={() => {
+                setCnt((x) => {
+                    return x + 1
+                })
+            }}>Increment</button>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

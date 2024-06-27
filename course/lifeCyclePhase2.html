@@ -1,0 +1,17 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        //to execute 100 lines of code after rendering the component is done by using useEffect()
+        React.useEffect(()=>{
+            console.log("Called")
+        })
+        return <div>
+            Sachin
+            </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
