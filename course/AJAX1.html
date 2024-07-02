@@ -3,6 +3,66 @@
 <script src="react-dom.development.js"></script>
 <div id="root"></div>
 <script type="text/babel">
-const rootref = ReactDOM.createRoot(document.getElementById("root"));
-rootref.render(<App />)
+    const Table = ({headers,data,columns,handleDel}) =>{
+        return <table border="2px">
+            <thead>
+                <tr>
+                    {
+                        headers.map((val,ind)=>{
+                            return <th key={ind}>{val}</th>
+                        })
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    data.map((obj,ind)=>{
+                        return <tr key={ind}>
+                            {
+                                columns.map((key,index)=>{
+                                    return <td key={index}>{obj[key]}</td>
+                                })
+                            }
+                            <td><button onClick={()=>{
+                                handleDel(obj)}}>Delete</button></td>
+                        </tr>
+                    })
+                }
+            </tbody>
+            </table>
+    }
+    const App = () =>{
+        const [users,setUsers] = React.useState([])
+        const handleDel = (row) =>{
+            const clonedUsers = [...users];
+            const index = clonedUsers.findIndex((obj)=>{
+                return obj.id === row.id
+            })
+            clonedUsers.splice(index,1)
+            setUsers(clonedUsers)
+        }
+        const handleClick = () =>{
+            const httpObj = new XMLHttpRequest();
+            httpObj.open("get","https://jsonplaceholder.typicode.com/users")
+            httpObj.send()
+            httpObj.onload = function () {
+                let res = httpObj.responseText;
+                res = JSON.parse(res)
+                setUsers(res)
+            }
+            httpObj.onerror = function () {
+                console.log("fail")
+            }
+        }
+        return <div>
+            <button onClick={handleClick}>Show Table</button>
+            {users.length > 0 && <Table 
+                headers={["Name","Phone Number","Email","Delete"]}
+                data={users}
+                columns={["name","phone","email"]}
+                handleDel={handleDel}/>}
+            </div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
 </script>
