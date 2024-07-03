@@ -1,0 +1,97 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<style>
+    .pagination{
+        display: flex;
+        gap: 100px;
+    }
+</style>
+<script type="text/babel">
+    const mydata = [
+        {
+            id: '1',
+            url: '2323'
+        },
+        {
+            id: '2',
+            url: '32323'
+        },
+        {
+            id: '3',
+            url: '54545'
+        },
+        {
+            id: '4',
+            url: '5488'
+        },
+        {
+            id: '5',
+            url: '5454'
+        }
+    ]
+    const Pagination = ({pageNo, totalPage, setPageNo}) =>{
+        const handleClick = (eve) =>{
+            switch(eve.target.innerText){
+                case 'Next':
+                    setPageNo(pageNo + 1)
+                    break;
+                case 'Prev':
+                    setPageNo(pageNo - 1)
+                    break;
+                default:
+
+                    break;
+            }
+        }
+        return <div className="pagination">
+            <div>
+                <input type="number" /><button onClick={handleClick}>Go</button>
+            </div>
+            <div><button disabled={pageNo == 1} onClick={handleClick}>Prev</button>{pageNo}<button onClick={handleClick} disabled={pageNo === totalPage}>Next</button></div>
+            <div>No of Pages:{totalPage}</div>
+        </div>
+    }
+    const Table = ({ headers, data, columns }) => {
+        const [pageNo,setpageNo] = React.useState(1)
+        return<div><table border="2px">
+                <thead>
+                    <tr>
+                        {
+                            headers.map((val, ind) => {
+                                return <th key={ind}>{val}</th>
+                            })
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        data.map((obj, k) => {
+                            return <tr key={k}>{
+                                columns.map((ele, index) => {
+                                    return <td key={index}>{obj[ele]}</td>
+                                })
+                            }</tr>
+                        })
+                    }
+                </tbody>
+            </table>
+            <Pagination pageNo={pageNo} totalPage={Math.ceil(data.length / 2)} setPageNo={setpageNo}/>
+        </div>
+    }
+    const App = () => {
+        const [photo, setPhoto] = React.useState([])
+        const handleClick = () => {
+            setPhoto(mydata)
+        }
+        return <div>
+            <button onClick={handleClick}>
+                Get Photos
+            </button>
+            <p>{photo.length > 0 && <Table headers={["id", "url"]} data={photo} columns={["id", "url"]} />}</p>
+        </div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>
