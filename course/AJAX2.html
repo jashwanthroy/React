@@ -17,14 +17,11 @@
         background: black;
         opacity: 0.5;
     }
-    .loader+{
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background: black;
-        margin: auto;
+    .loaderimg{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 </style>
 <script type="text/babel">
@@ -99,7 +96,7 @@
         <div className="loader">
 
         </div>
-        <img src="../loader.gif"/>
+        <img className="loaderimg" src="../loader.gif"/>
         </>
     }
     const App = () => {
