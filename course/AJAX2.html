@@ -77,7 +77,7 @@
     const App = () => {
         const [photo, setPhoto] = React.useState([])
         const handleClick = async () => {
-            axios.get("https://jsonplaceholder.typicode.com/photos")
+            /*axios.get("https://jsonplaceholder.typicode.com/photos")
                 .then((res) => {
                     setPhoto(res.data)
                 })
@@ -86,7 +86,15 @@
                 })
                 .finally(() => {
 
-                })
+                })*/
+            try {
+                const res = await axios.get("https://jsonplaceholder.typicode.com/photos")
+                setPhoto(res.data)
+            } catch (e) {
+
+            } finally {
+
+            }
         }
         return <div>
             <button onClick={handleClick}>
