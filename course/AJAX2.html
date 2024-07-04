@@ -8,6 +8,24 @@
         display: flex;
         gap: 100px;
     }
+    .loader{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: black;
+        opacity: 0.5;
+    }
+    .loader+{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: black;
+        margin: auto;
+    }
 </style>
 <script type="text/babel">
 
@@ -49,7 +67,9 @@
             const start = end - perPage;
             setCurrData(data.slice(start, end), [pageNo])
         })
-        return <div><table border="2px">
+        return <div>
+            <Pagination pageNo={pageNo} totalPage={Math.ceil(data.length / perPage)} setPageNo={setpageNo} />
+            <table border="2px">
             <thead>
                 <tr>
                     {
@@ -74,9 +94,19 @@
             <Pagination pageNo={pageNo} totalPage={Math.ceil(data.length / perPage)} setPageNo={setpageNo} />
         </div>
     }
+    const Loader = () =>{
+        return<>
+        <div className="loader">
+
+        </div>
+        <img src="../loader.gif"/>
+        </>
+    }
     const App = () => {
         const [photo, setPhoto] = React.useState([])
+        const [isShowLoader, setiShowLoader] = React.useState(false)
         const handleClick = async () => {
+            setiShowLoader(true)
             /*axios.get("https://jsonplaceholder.typicode.com/photos")
                 .then((res) => {
                     setPhoto(res.data)
@@ -93,7 +123,7 @@
             } catch (e) {
 
             } finally {
-
+                setiShowLoader(false)
             }
         }
         return <div>
@@ -101,6 +131,7 @@
                 Get Photos
             </button>
             <p>{photo.length > 0 && <Table headers={["ID", "TITLE", "URL"]} data={photo} columns={["id", "title", "url"]} perPage={100} />}</p>
+            {isShowLoader && <Loader />}
         </div>
     }
     const rootref = ReactDOM.createRoot(document.getElementById("root"));
