@@ -3,7 +3,6 @@ import Link from 'next/link'
 import "./Menu.css"
 export const Menu = () => {
   return (
-      <div>
       <ul className="menu">
         <li>
           <Link href="/home">Home</Link>
@@ -15,7 +14,6 @@ export const Menu = () => {
           <Link href="/contact">Contact</Link>
               </li>
           </ul>
-    </div>
   )
 }
 

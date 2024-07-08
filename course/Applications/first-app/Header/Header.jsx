@@ -3,7 +3,7 @@ import './Header.css'
 export const Header = () => {
   return (
     <div class="header">
-      Header
+      A Sample Web Page
     </div>
   )
 }
