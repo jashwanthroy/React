@@ -1,0 +1,21 @@
+
+[
+    {
+        "path":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_dark_color_272x92dp.png",
+        "altText":"first Slide",
+        "title":"First slide label",
+        "subtitle": "jfdf iuagdfygwe oweyfwyeu f ofydufdi g"
+    },
+    {
+        "path":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_dark_color_272x92dp.png",
+        "altText":"second Slide",
+        "title":"Second slide label",
+        "subtitle": "jfdf iuagdfygwe oweyfwyeu f ofydufdi g"
+    },
+    {
+        "path":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_dark_color_272x92dp.png",
+        "altText":"third Slide",
+        "title":"Third slide label",
+        "subtitle": "jfdf iuagdfygwe oweyfwyeu f ofydufdi g"
+    }
+]
