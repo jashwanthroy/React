@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 export const Header = () => {
   return (
-    <div class="header">
+    <div className="header" data-testid="header">
       A Sample Web Page
     </div>
   )
