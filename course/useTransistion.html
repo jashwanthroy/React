@@ -1,0 +1,35 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const [data,setData] = React.useState([]);
+        const [name,setName] = React.useState("Sachin");
+        const [isLoading,handleTransition] = React.useTransition();
+        const fnSubmit = () =>{
+            setName(name === "Sachin" ? "Dhoni" : "Sachin")
+            handleTransition (() =>{
+                let items = []
+                for(let i = 0;i <= 30000;i++){
+                    items.push("i am" + i)
+                }
+                setData(items)
+            });
+            }
+        return <div>
+            <h1>{name}</h1>
+            {isLoading && <h1>Loading.....</h1>}
+            <ol>
+                {
+                    data.map((item,index)=>{
+                        return <li key={index}>{item}</li>
+                    })
+                }
+            </ol>
+            <button onClick={fnSubmit}>Toggle</button>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>
