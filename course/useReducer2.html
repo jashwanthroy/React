@@ -1,0 +1,58 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+
+
+<script type="text/babel">
+    const init = {
+        name:"",
+        loc:""
+    }
+    const A = ()=>{
+        const locRef = React.useRef()
+        const handleClick = () =>{
+            alert(locRef.current)
+        }
+        return <div>
+            <p>
+                Name:<input type="text" onChange={(eve) =>{
+                    locRef.current = eve?.target?.value
+                }}
+                />
+            </p>
+            <button onClick={handleClick}>Submit</button>
+        </div>
+    }
+    const B = () =>{
+        const[loc,setLoc] = React.useState("")
+        const handleClick = () =>{
+            alert(loc)
+        }
+        return <div>
+            <p>
+                Location:<input type="text" onChange={(eve)=>{
+                    setLoc(eve?.target?.value)
+                }}/>
+            </p>
+            <button onClick={handleClick}>Submit</button>
+        </div>
+    }
+    const C = () =>{
+        return <div>
+            <p>
+                <h1>Name</h1>
+                <h1>Location</h1>
+            </p>
+        </div>
+    }
+    const App = ()=>{
+        return <div>
+            <A />
+            <B />
+            <C />
+            </div>
+    }
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>

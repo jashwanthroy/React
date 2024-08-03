@@ -1,0 +1,35 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = () =>{
+        const[cnt,setCnt] = React.useState(0);
+        const[name,setName] = React.useState("Sachin")
+        const handleClick = ()=>{
+            setCnt(()=>{
+                return cnt + 1;
+            })
+        }
+        const handleToggle = () =>{
+            setName(()=>{
+                return name === "Sachin" ? "Dhoni" : "Sachin"
+            })
+        }
+
+        const result = React.useMemo(() =>{
+            console.log("5k lines of code")
+            return cnt % 2 == 0 ? "Even" : "Odd"
+        },[cnt])
+        //useMemo takes a call back function and dependencies([cnt])
+        return<div>
+            <h3>{cnt}</h3>
+            <button onClick={handleClick}>Increment</button>
+            <h1>{result}</h1>
+            <h1>{name}</h1>
+            <button onClick={handleToggle}>Toggle</button>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

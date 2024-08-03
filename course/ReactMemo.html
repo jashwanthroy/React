@@ -1,0 +1,29 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    //React.memo -> used to prevent unwanted re-render
+    const B = React.memo(() =>{
+        console.log("B component")
+        return <div>
+            <h1>B component</h1>
+        </div>
+    })
+    const App = () =>{
+        const[cnt,setCnt] = React.useState(0);
+        const handleClick = ()=>{
+            setCnt(()=>{
+                return cnt + 1;
+            })
+        }
+        console.log("A component")
+        return<div>
+            <h3>{cnt}</h3>
+            <button onClick={handleClick}>Submit</button>
+            <B/>
+        </div>
+    }
+    const rootRef = ReactDOM.createRoot(document.getElementById("root"));
+    rootRef.render(<App />)
+</script>

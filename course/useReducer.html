@@ -1,0 +1,47 @@
+<script src="babel.min.js"></script>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    const App = ()=>{
+        const init ={
+            cnt: 0,
+            name: "Roy"
+        }
+        const reducer = (state,action)=>{
+            switch(action.type){
+                case 'CNT_UPDATE':
+                    return {
+                        ...state,
+                        cnt: action.payload
+                    }
+                case 'NAME_UPDATE':
+                    return {
+                        ...state,
+                        name: action.payload
+                    }
+                default:
+                    return state;
+            }
+        }
+        const [state,dispatch] = React.useReducer(reducer,init)
+        //const [cnt,setCnt] = React.useState(0);
+        //const [name,setName] = React.useState("Roy");
+        const handleClick = ()=>{
+            dispatch({type: "CNT_UPDATE",payload:state.cnt + 1})
+        }
+        const toggleName = () =>{
+            dispatch({type: "NAME_UPDATE",payload: state.name === "Roy" ? "Karnati" : "Roy"})
+        }
+        return <div>
+            <h1>{state.cnt}</h1>
+            <button onClick={handleClick}>Increment</button>
+
+            <h1>{state.name}</h1>
+            <button onClick={toggleName}>Toggle</button>
+            </div>
+    }
+
+    const rootref = ReactDOM.createRoot(document.getElementById("root"));
+    rootref.render(<App />)
+</script>
